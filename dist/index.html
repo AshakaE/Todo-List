@@ -14,7 +14,13 @@
 <body>
   <main class="container p-5 main">
     <h1 class="text-center mb-5">Todo Project</h1>
-    <form action="#" class="row">
+    <nav class="main__nav mb-5">
+      <button id="addTaskButton" class="main__button btn btn-outline-primary">Add a Task</button>
+    </nav>
+    <form id="addTaskForm" action="#" class="row border rounded px-4 py-5 hide">
+      <div class="col-12">
+        <h2 class="form__title mb-4">Add a Task</h2>
+      </div>
       <div class="col-12 col-md-6 col-xl-3">
         <label class="form-label" for="title">Title</label>
         <input class="form-control" type="text" id="title" required>
@@ -37,7 +43,7 @@
       </div>
     </form>
   </main>
-  <script src='./dist/main.js'></script>
+  <script src='./main.js'></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
     crossorigin="anonymous"></script>

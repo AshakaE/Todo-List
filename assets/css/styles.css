@@ -2,3 +2,7 @@
   background-color: aliceblue;
   height: 100vh;
 }
+
+.hide {
+  display: none;
+}
