@@ -8,10 +8,11 @@ function loadAddTask() {
   });
 }
 
-function submitTask(project) {
+function submitTask() {
   const submitTaskButton = document.getElementById('formSubmit');
   submitTaskButton.addEventListener('click', function () {
-    project.content.push(util.createTask());
+    util.createTask()
+    util.showAllTasks()
   });
 }
 

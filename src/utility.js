@@ -24,15 +24,17 @@ function showMainList(projectClass) {
 }
 
 function createTask() {
-  const taskInputs = document.querySelectorAll('[data-type="in"]');
-  const arr = [];
-  taskInputs.forEach(node => {
-    arr.push(node.value);
-  });
-  const newTask = new Todo(...arr);
+  const newTask = new Todo(...taskInputs());
   return newTask;
 }
 
+function showAllTasks() {
+  const taskTable =  document.querySelector('.taskTable');
+  Todo.mainList.forEach(task => {
+    taskTable.appendChild(task.showTask())
+  })
+}
+
 export {
-  toggleShowElement, createTask, showMainList, taskInputs,
+  toggleShowElement, createTask, showMainList, taskInputs, showAllTasks
 };

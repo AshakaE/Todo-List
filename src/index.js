@@ -7,7 +7,9 @@ const ad = new Project('ccccr');
 const efef = new Project('vvvr');
 const dazda = new Project('bbbr');
 utils.showMainList(Project);
+console.log(newProject)
+console.log(ad)
 
-
+// utils.showAllTasks();
 event.loadAddTask();
-event.submitTask(newProject);
+event.submitTask();
