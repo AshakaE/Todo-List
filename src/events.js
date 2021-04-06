@@ -8,4 +8,14 @@ function loadAddTask() {
   });
 }
 
-export { loadAddTask };
+function loadSubmitTask() {
+  const taskInputs = document.querySelectorAll('[data-type="in"]');
+  let arr = [];
+  taskInputs.forEach(node => {
+    arr.push(node.value);
+    console.log(arr);
+  });
+  
+}
+
+export { loadAddTask, loadSubmitTask };
