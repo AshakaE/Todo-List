@@ -8,14 +8,11 @@ function loadAddTask() {
   });
 }
 
-function loadSubmitTask() {
-  const taskInputs = document.querySelectorAll('[data-type="in"]');
-  let arr = [];
-  taskInputs.forEach(node => {
-    arr.push(node.value);
-    console.log(arr);
+function submitTask(project) {
+  const submitTaskButton = document.getElementById('formSubmit');
+  submitTaskButton.addEventListener('click', function () {
+    project.content.push(util.createTask());
   });
-  
 }
 
-export { loadAddTask, loadSubmitTask };
+export { loadAddTask, submitTask };
