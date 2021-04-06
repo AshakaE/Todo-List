@@ -7,7 +7,30 @@
   <title>Todo-List</title>
 </head>
 <body>
-
+  <main> 
+    <form action="#">
+      <div>
+        <label for="title">Title</label>
+        <input type="text" id="title">
+      </div>
+      <div>
+        <label for="desciption">desciption</label>
+        <input type="text" id="decription">
+      </div>
+      <div>
+        <label for="dueDate">dueDate</label>
+        <input type="date" id="dueDate">
+      </div>
+      <div>
+        <label for="priority">priority</label>
+        <select name="priority" id="priority">
+          <option value="1">High</option>
+          <option value="2">Medium</option>
+          <option value="3">Low</option>
+        </select>
+      </div>
+    </form>
+  </main>
   <script src='./dist/main.js'></script>
 </body>
 </html>
