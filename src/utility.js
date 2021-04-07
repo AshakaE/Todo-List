@@ -29,12 +29,17 @@ function createTask() {
 }
 
 function showAllTasks() {
-  const taskTable =  document.querySelector('.taskTable');
+  const taskTable = document.querySelector('.taskTable');
   Todo.mainList.forEach(task => {
-    taskTable.appendChild(task.showTask())
-  })
+    taskTable.appendChild(task.showTask());
+  });
+}
+
+function showTask(task) {
+  const taskTable = document.querySelector('.taskTable');
+  taskTable.appendChild(task.showTask());
 }
 
 export {
-  toggleShowElement, createTask, showMainList, taskInputs, showAllTasks
+  toggleShowElement, createTask, showMainList, taskInputs, showAllTasks, showTask,
 };
