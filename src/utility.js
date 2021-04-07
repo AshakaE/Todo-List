@@ -13,7 +13,6 @@ function taskInputs() {
   taskInputs.forEach(node => {
     arr.push(node.value);
   });
-  console.log(arr);
   return arr;
 }
 

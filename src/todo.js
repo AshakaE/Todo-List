@@ -11,13 +11,12 @@ export default class Todo {
     this.dueDate = dueDate;
     this.priority = priority;
     this.project = project;
+    this.index = Todo.mainList.length;
     this.addToProject(project);
     Todo.mainList.push(this);
   }
 
   addToProject(id) {
-    console.log(id);
-    console.log(Project.mainList);
     Project.mainList[id].addTodo(this);
   }
 
@@ -40,6 +39,13 @@ export default class Todo {
       td.textContent = arr[i];
       tr.appendChild(td);
     }
+    const editButton = document.createElement('button');
+    editButton.className = 'btn btn-outline-info edit__button';
+    editButton.dataset.id = this.index;
+    editButton.textContent = 'Edit';
+    const td = document.createElement('td');
+    td.appendChild(editButton);
+    tr.appendChild(td);
     return tr;
   }
 }
