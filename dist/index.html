@@ -21,51 +21,57 @@
       <div class="col-12">
         <h2 class="form__title mb-4">Add a Task</h2>
       </div>
-      <div class="col-12 col-md-6 col-xl-3">
+      <div class="col-12 col-md-6 col-xl-4 mb-3">
         <label class="form-label" for="title">Title</label>
         <input class="form-control" type="text" id="title" data-type="in" required>
       </div>
-      <div class="col-12 col-md-6 col-xl-3">
+      <div class="col-12 col-md-6 col-xl-4 mb-3">
         <label class="form-label" for="desciption">Description</label>
         <input class="form-control" type="text" id="decription" data-type="in">
       </div>
-      <div class="col-12 col-md-6 col-xl-3">
+      <div class="col-12 col-md-6 col-xl-4 mb-3">
         <label class="form-label" for="dueDate">Due date</label>
         <input class="form-control" type="date" id="dueDate" data-type="in" required>
       </div>
-      <div class="col-12 col-md-6 col-xl-3">
+      <div class="col-12 col-md-6 mb-3">
         <label class="form-label" for="priority">Priority</label>
-        <select class="form-control" name="priority" id="priority" data-type="in" required>
+        <select class="form-select" name="priority" id="priority" data-type="in" required>
           <option value="1">High</option>
           <option value="2">Medium</option>
           <option value="3">Low</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-12 col-xl-6 mb-3">
+        <label class="form-label" for="Project">Project</label>
+        <select class="form-select" name="project" id="project" data-type="in" required>
+          
         </select>
       </div>
       <div class="col-12">
         <button id="formSubmit" class="form__submit btn btn-lg btn-outline-success w-100 mt-5">Submit Task</button>
       </div>
     </div>
-    <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Title</th>
-          <th scope="col">Description</th>
-          <th scope="col">Date</th>
-          <th scope="col">Priority</th>
-        </tr>
-      </thead>
-      <tbody class="taskTable">
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="col-12 mt-5 mx-auto border rounded px-4 py-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Project</th>
+          </tr>
+        </thead>
+        <tbody class="taskTable">
+          <tr>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </main>
   <script src='./main.js'></script>
