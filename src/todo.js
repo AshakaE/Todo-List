@@ -16,6 +16,8 @@ export default class Todo {
   }
 
   addToProject(id) {
+    console.log(id);
+    console.log(Project.mainList);
     Project.mainList[id].addTodo(this);
   }
 

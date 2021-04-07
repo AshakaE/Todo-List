@@ -1,4 +1,7 @@
+import Project from './project';
 import Todo from './todo';
+
+const projectsList = document.getElementById('project');
 
 function toggleShowElement(element) {
   element.classList.toggle('hide');
@@ -10,11 +13,11 @@ function taskInputs() {
   taskInputs.forEach(node => {
     arr.push(node.value);
   });
+  console.log(arr);
   return arr;
 }
 
 function showMainList(projectClass) {
-  const projectsList = document.getElementById('project');
   projectClass.mainList.forEach((project, index) => {
     const option = document.createElement('option');
     option.textContent = project.title;
@@ -23,9 +26,26 @@ function showMainList(projectClass) {
   });
 }
 
+function addProjectToForm(project) {
+  const option = document.createElement('option');
+  option.textContent = project.title;
+  option.value = project.index;
+  projectsList.appendChild(option);
+}
+
 function createTask() {
   const newTask = new Todo(...taskInputs());
   return newTask;
+}
+
+function projectInput() {
+  const projectInput = document.getElementById('projectTitle');
+  return projectInput.value;
+}
+
+function createProject() {
+  const newProject = new Project(projectInput());
+  return newProject;
 }
 
 function showAllTasks() {
@@ -41,5 +61,6 @@ function showTask(task) {
 }
 
 export {
-  toggleShowElement, createTask, showMainList, taskInputs, showAllTasks, showTask,
+  toggleShowElement, createTask, showMainList, taskInputs, showAllTasks, showTask, createProject,
+  addProjectToForm,
 };

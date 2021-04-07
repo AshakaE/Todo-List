@@ -1,11 +1,20 @@
 import * as util from './utility';
+import Project from './project';
 
 const addTaskForm = document.getElementById('addTaskForm');
+const addProjectForm = document.getElementById('addProjectForm');
 
 function loadAddTask() {
   const addTaskButton = document.getElementById('addTaskButton');
   addTaskButton.addEventListener('click', () => {
     util.toggleShowElement(addTaskForm);
+  });
+}
+
+function loadAddProject() {
+  const addProjectButton = document.getElementById('addProjectButton');
+  addProjectButton.addEventListener('click', () => {
+    util.toggleShowElement(addProjectForm);
   });
 }
 
@@ -17,4 +26,14 @@ function submitTask() {
   });
 }
 
-export { loadAddTask, submitTask };
+function submitProject() {
+  const submitProjectButton = document.getElementById('projectSubmit');
+  submitProjectButton.addEventListener('click', () => {
+    util.addProjectToForm(util.createProject());
+    util.toggleShowElement(addProjectForm);
+  });
+}
+
+export {
+  loadAddTask, submitTask, loadAddProject, submitProject,
+};

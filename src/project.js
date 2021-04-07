@@ -4,6 +4,7 @@ export default class Project {
   constructor(title) {
     this.title = title;
     this.content = [];
+    this.index = Project.mainList.length;
     Project.mainList.push(this);
   }
 
