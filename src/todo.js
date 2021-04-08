@@ -50,18 +50,34 @@ export default class Todo {
     return taskInputs;
   }
 
-  createButton(type, style) {
-    const button = document.createElement('button');
-    button.className = `btn btn-outline-${style} edit__button mx-2`;
-    button.dataset.type = `${type}-task`;
-    button.dataset.id = this.index;
-    button.textContent = type.toUpperCase();
+  addEditEvent(button) {
     button.addEventListener('click', () => {
       this.populateTaskForm();
       const editTaskForm = document.getElementById('editTaskForm');
       utils.addHiddenInput(editTaskForm, this);
       utils.toggleShowElement(editTaskForm);
     });
+  }
+
+  addDeleteEvent(button) {
+    button.addEventListener('click', () => {
+      utils.findTask(this.index).remove()
+      delete Todo.mainList[this.index]
+      console.log(Todo.mainList)
+    });
+  }
+
+  createButton(type, style) {
+    const button = document.createElement('button');
+    button.className = `btn btn-outline-${style} edit__button mx-2`;
+    button.dataset.type = `${type}-task`;
+    button.dataset.id = this.index;
+    button.textContent = type.toUpperCase();
+    if (type === 'edit') {
+      this.addEditEvent(button)
+    } else {
+      this.addDeleteEvent(button)
+    }
     return button;
   }
 
