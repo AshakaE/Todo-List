@@ -1,6 +1,7 @@
 import Project from './project';
 
 const projectsList = document.getElementById('project');
+const editProjectsList = document.getElementById('editProject');
 
 function toggleShowElement(element) {
   element.classList.toggle('hide');
@@ -19,6 +20,11 @@ function clearAddTaskForm() {
   });
 }
 
+function clearAddProjectForm() {
+  const projectInput = document.getElementById('projectTitle');
+  projectInput.value = '';
+}
+
 function taskInputs() {
   const taskInputs = findTaskInputs();
   const arr = [];
@@ -33,7 +39,9 @@ function showMainList(projectClass) {
     const option = document.createElement('option');
     option.textContent = project.title;
     option.value = index;
+    const optionClone = option.cloneNode(true);
     projectsList.appendChild(option);
+    editProjectsList.appendChild(optionClone);
   });
 }
 
@@ -41,7 +49,9 @@ function addProjectToForm(project) {
   const option = document.createElement('option');
   option.textContent = project.title;
   option.value = project.index;
+  const optionClone = option.cloneNode(true);
   projectsList.appendChild(option);
+  editProjectsList.appendChild(optionClone);
 }
 
 // function createTask() {
@@ -78,5 +88,5 @@ function findTask(id) {
 
 export {
   toggleShowElement, showMainList, taskInputs, showTask, createProject,
-  addProjectToForm, findTask, clearAddTaskForm,
+  addProjectToForm, findTask, clearAddTaskForm, clearAddProjectForm,
 };

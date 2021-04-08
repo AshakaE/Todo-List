@@ -34,6 +34,7 @@ function submitProject() {
   submitProjectButton.addEventListener('click', () => {
     util.addProjectToForm(util.createProject());
     util.toggleShowElement(addProjectForm);
+    util.clearAddProjectForm();
   });
 }
 
