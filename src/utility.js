@@ -7,8 +7,8 @@ function toggleShowElement(element) {
   element.classList.toggle('hide');
 }
 
-function findTaskInputs() {
-  return document.querySelectorAll('[data-type="in"]');
+function findTaskInputs(type = 'in') {
+  return document.querySelectorAll(`[data-type="${type}"]`);
 }
 
 function clearAddTaskForm() {
@@ -25,8 +25,8 @@ function clearAddProjectForm() {
   projectInput.value = '';
 }
 
-function taskInputs() {
-  const taskInputs = findTaskInputs();
+function taskInputs( type = 'in') {
+  const taskInputs = findTaskInputs(type);
   const arr = [];
   taskInputs.forEach(node => {
     arr.push(node.value);

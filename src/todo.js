@@ -85,7 +85,7 @@ export default class Todo {
   }
 
   editTask() {
-    const arr = utils.taskInputs();
+    const arr = utils.taskInputs('out');
     const keys = Object.keys(this);
     for (let i = 0; i < arr.length; i += 1) {
       this.changeAttr(keys[i], arr[i]);

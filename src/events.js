@@ -4,6 +4,7 @@ import Todo from './todo';
 
 const addTaskForm = document.getElementById('addTaskForm');
 const addProjectForm = document.getElementById('addProjectForm');
+const editTaskForm = document.getElementById('editTaskForm');
 
 function loadAddTask() {
   const addTaskButton = document.getElementById('addTaskButton');
@@ -32,9 +33,9 @@ function submitTask() {
 function saveTask() {
   const editTaskButton = document.getElementById('formSave');
   editTaskButton.addEventListener('click', () => {
-    const newTask = new Todo(...util.taskInputs());
-    util.showTask(newTask);
-    util.toggleShowElement(addTaskForm);
+    const editedTask = document.querySelector('[name="id"]').value
+    Todo.mainList[editedTask].editTask();
+    util.toggleShowElement(editTaskForm);
     util.clearAddTaskForm();
   });
 }
@@ -49,5 +50,5 @@ function submitProject() {
 }
 
 export {
-  loadAddTask, submitTask, loadAddProject, submitProject,
+  loadAddTask, submitTask, loadAddProject, submitProject, saveTask,
 };
