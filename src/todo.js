@@ -90,5 +90,17 @@ export default class Todo {
     for (let i = 0; i < arr.length; i += 1) {
       this.changeAttr(keys[i], arr[i]);
     }
+    this.showEditedTask()
+  }
+
+  showEditedTask() {
+    const task = document.querySelector(`tr[data-id="${this.index}"]`)
+    const arr = task.childNodes
+    const taskValues = this.formatProps();
+    for (let i = 0; i < 5; i += 1) {
+      const element = arr[i];
+      element.textContent = taskValues[i]
+      
+    }
   }
 }
