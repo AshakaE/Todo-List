@@ -42,7 +42,7 @@ export default class Todo {
   }
 
   populateTaskForm() {
-    const taskInputs = document.querySelectorAll('[data-type="in"]');
+    const taskInputs = document.querySelectorAll('[data-type="out"]');
     for (let i = 0; i < taskInputs.length; i += 1) {
       const element = taskInputs[i];
       element.value = this.findProps()[i];
@@ -55,13 +55,12 @@ export default class Todo {
     button.className = `btn btn-outline-${style} edit__button mr-2`;
     button.dataset.type = `${type}-task`;
     button.dataset.id = this.index;
-    button.textContent = `${type.charAt(0).toUpperCase()}`;
+    button.textContent = type.toUpperCase()
     button.addEventListener('click', () => {
       this.populateTaskForm();
-      const addTaskForm = document.getElementById('addTaskForm');
+      const editTaskForm = document.getElementById('editTaskForm');
       
-      utils.toggleShowElement(addTaskForm);
-      utils.editFormTitle();
+      utils.toggleShowElement(editTaskForm);
     });
     return button;
   }
@@ -83,5 +82,13 @@ export default class Todo {
     tr.appendChild(td);
     tr.dataset.id = this.index;
     return tr;
+  }
+
+  editTask() {
+    const arr = utils.taskInputs() 
+    const keys = Object.keys(this)
+    for (let i = 0; i < arr.length; i++) {
+      this.changeAttr(keys[i], arr[i])
+    }
   }
 }
