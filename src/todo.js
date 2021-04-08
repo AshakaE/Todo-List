@@ -52,14 +52,14 @@ export default class Todo {
 
   createButton(type, style) {
     const button = document.createElement('button');
-    button.className = `btn btn-outline-${style} edit__button mr-2`;
+    button.className = `btn btn-outline-${style} edit__button mx-2`;
     button.dataset.type = `${type}-task`;
     button.dataset.id = this.index;
-    button.textContent = type.toUpperCase()
+    button.textContent = type.toUpperCase();
     button.addEventListener('click', () => {
       this.populateTaskForm();
       const editTaskForm = document.getElementById('editTaskForm');
-      
+
       utils.toggleShowElement(editTaskForm);
     });
     return button;
@@ -85,10 +85,10 @@ export default class Todo {
   }
 
   editTask() {
-    const arr = utils.taskInputs() 
-    const keys = Object.keys(this)
+    const arr = utils.taskInputs();
+    const keys = Object.keys(this);
     for (let i = 0; i < arr.length; i++) {
-      this.changeAttr(keys[i], arr[i])
+      this.changeAttr(keys[i], arr[i]);
     }
   }
 }

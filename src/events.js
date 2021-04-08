@@ -25,6 +25,7 @@ function submitTask() {
     const newTask = new Todo(...util.taskInputs());
     util.showTask(newTask);
     util.toggleShowElement(addTaskForm);
+    util.clearAddTaskForm();
   });
 }
 

@@ -10,6 +10,15 @@ function findTaskInputs() {
   return document.querySelectorAll('[data-type="in"]');
 }
 
+function clearAddTaskForm() {
+  const taskInputs = findTaskInputs();
+  taskInputs.forEach(node => {
+    if (node.tagName === 'INPUT') {
+      node.value = '';
+    }
+  });
+}
+
 function taskInputs() {
   const taskInputs = findTaskInputs();
   const arr = [];
@@ -69,5 +78,5 @@ function findTask(id) {
 
 export {
   toggleShowElement, showMainList, taskInputs, showTask, createProject,
-  addProjectToForm, findTask,
+  addProjectToForm, findTask, clearAddTaskForm,
 };
