@@ -67,12 +67,7 @@ function findTask(id) {
   return task;
 }
 
-function editFormTitle() {
-  const formTitle = document.querySelector('.form__title');
-  formTitle.textContent = 'Edit Task';
-}
-
 export {
   toggleShowElement, showMainList, taskInputs, showTask, createProject,
-  addProjectToForm, editFormTitle, findTask,
+  addProjectToForm, findTask,
 };
