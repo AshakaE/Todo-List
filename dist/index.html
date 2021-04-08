@@ -20,7 +20,7 @@
     </nav>
     <div id="addProjectForm" action="#" class="row border rounded px-4 py-5 mb-3 hide">
       <div class="col-12">
-        <h2 class="form__title mb-4">Add a Project</h2>
+        <h2 class="mb-4">Add a Project</h2>
       </div>
       <div class="col-12 mb-3">
         <label class="form-label" for="projectTitle">Title</label>
@@ -49,6 +49,40 @@
       <div class="col-12 col-md-6 mb-3">
         <label class="form-label" for="priority">Priority</label>
         <select class="form-select" name="priority" id="priority" data-type="in" required>
+          <option value="2">High</option>
+          <option value="1">Medium</option>
+          <option value="0">Low</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-12 col-xl-6 mb-3">
+        <label class="form-label" for="Project">Project</label>
+        <select class="form-select" name="project" id="project" data-type="in" required>
+          
+        </select>
+      </div>
+      <div class="col-12">
+        <button id="formSubmit" class="form__submit btn btn-lg btn-outline-success w-100 mt-5">Submit Task</button>
+      </div>
+    </div>
+    <div id="editTaskForm" action="#" class="row border rounded px-4 py-5 hide">
+      <div class="col-12">
+        <h2 class="form__title mb-4">Edit Task</h2>
+      </div>
+      <div class="col-12 col-md-6 col-xl-4 mb-3">
+        <label class="form-label" for="title">Title</label>
+        <input class="form-control" type="text" id="title" data-type="out" required>
+      </div>
+      <div class="col-12 col-md-6 col-xl-4 mb-3">
+        <label class="form-label" for="desciption">Description</label>
+        <input class="form-control" type="text" id="decription" data-type="out">
+      </div>
+      <div class="col-12 col-md-6 col-xl-4 mb-3">
+        <label class="form-label" for="dueDate">Due date</label>
+        <input class="form-control" type="date" id="dueDate" data-type="out" required>
+      </div>
+      <div class="col-12 col-md-6 mb-3">
+        <label class="form-label" for="priority">Priority</label>
+        <select class="form-select" name="priority" id="priority" data-type="out" required>
           <option value="2">High</option>
           <option value="1">Medium</option>
           <option value="0">Low</option>
