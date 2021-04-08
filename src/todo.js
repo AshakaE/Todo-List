@@ -40,11 +40,18 @@ export default class Todo {
       tr.appendChild(td);
     }
     const editButton = document.createElement('button');
+    const deleteButton = document.createElement('button');
     editButton.className = 'btn btn-outline-info edit__button';
+    deleteButton.className = 'btn btn-outline-danger edit__button mx-2';
+    editButton.dataset.type = 'edit-task';
+    deleteButton.dataset.type = 'delete-task';
     editButton.dataset.id = this.index;
+    deleteButton.dataset.id = this.index;
     editButton.textContent = 'Edit';
+    deleteButton.textContent = 'Delete';
     const td = document.createElement('td');
     td.appendChild(editButton);
+    td.appendChild(deleteButton);
     tr.appendChild(td);
     return tr;
   }
