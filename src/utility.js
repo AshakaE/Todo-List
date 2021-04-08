@@ -1,5 +1,4 @@
 import Project from './project';
-import Todo from './todo';
 
 const projectsList = document.getElementById('project');
 
@@ -11,16 +10,8 @@ function findTaskInputs() {
   return document.querySelectorAll('[data-type="in"]');
 }
 
-function populateTaskForm(todo) {
-  const taskInputs = findTaskInputs()
-  for (let i = 0; i < taskInputs.length; i++) {
-    const element = taskInputs[i];
-    element.value = todo.findProps()[i]
-  }
-}
-
 function taskInputs() {
-  const taskInputs = findTaskInputs()
+  const taskInputs = findTaskInputs();
   const arr = [];
   taskInputs.forEach(node => {
     arr.push(node.value);
@@ -44,10 +35,10 @@ function addProjectToForm(project) {
   projectsList.appendChild(option);
 }
 
-function createTask() {
-  const newTask = new Todo(...taskInputs());
-  return newTask;
-}
+// function createTask() {
+//   const newTask = new Todo(...taskInputs());
+//   return newTask;
+// }
 
 function projectInput() {
   const projectInput = document.getElementById('projectTitle');
@@ -59,12 +50,12 @@ function createProject() {
   return newProject;
 }
 
-function showAllTasks() {
-  const taskTable = document.querySelector('.taskTable');
-  Todo.mainList.forEach(task => {
-    taskTable.appendChild(task.showTask());
-  });
-}
+// function showAllTasks() {
+//   const taskTable = document.querySelector('.taskTable');
+//   Todo.mainList.forEach(task => {
+//     taskTable.appendChild(task.showTask());
+//   });
+// }
 
 function showTask(task) {
   const taskTable = document.querySelector('.taskTable');
@@ -72,16 +63,16 @@ function showTask(task) {
 }
 
 function findTask(id) {
-  const task = document.querySelector(`tr[data-id="${id}"]`)
-  return task
+  const task = document.querySelector(`tr[data-id="${id}"]`);
+  return task;
 }
 
 function editFormTitle() {
-  const formTitle = document.querySelector('.form__title')
-  formTitle.textContent = 'Edit Task'
+  const formTitle = document.querySelector('.form__title');
+  formTitle.textContent = 'Edit Task';
 }
 
 export {
-  toggleShowElement, createTask, showMainList, taskInputs, showAllTasks, showTask, createProject,
-  addProjectToForm, editFormTitle, populateTaskForm, findTask
+  toggleShowElement, showMainList, taskInputs, showTask, createProject,
+  addProjectToForm, editFormTitle, findTask,
 };

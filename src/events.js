@@ -1,5 +1,6 @@
 import * as util from './utility';
 import Project from './project';
+import Todo from './todo';
 
 const addTaskForm = document.getElementById('addTaskForm');
 const addProjectForm = document.getElementById('addProjectForm');
@@ -21,7 +22,8 @@ function loadAddProject() {
 function submitTask() {
   const submitTaskButton = document.getElementById('formSubmit');
   submitTaskButton.addEventListener('click', () => {
-    util.showTask(util.createTask());
+    const newTask = new Todo(...util.taskInputs());
+    util.showTask(newTask);
     util.toggleShowElement(addTaskForm);
   });
 }
@@ -32,10 +34,6 @@ function submitProject() {
     util.addProjectToForm(util.createProject());
     util.toggleShowElement(addProjectForm);
   });
-}
-
-function loadEditTask() {
-  const editButton =  document.querySelector(`[data-id="${id}"]`)
 }
 
 export {

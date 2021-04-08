@@ -1,4 +1,6 @@
 import Project from './project';
+import * as utils from './utility';
+
 
 export default class Todo {
   static mainList = [];
@@ -25,10 +27,10 @@ export default class Todo {
   }
 
   findProps() {
-    return Object.values(this)
+    return Object.values(this);
   }
 
-  showTask() {
+  formatProps() {
     const props = this.findProps();
     const arr = [];
     for (let i = 0; i < 3; i += 1) {
@@ -36,6 +38,36 @@ export default class Todo {
     }
     arr.push(Todo.priorityText[props[3]]);
     arr.push(Project.mainList[props[4]].title);
+    return arr;
+  }
+
+  populateTaskForm() {
+    const taskInputs = document.querySelectorAll('[data-type="in"]');
+    for (let i = 0; i < taskInputs.length; i += 1) {
+      const element = taskInputs[i];
+      element.value = this.findProps()[i];
+    }
+    return taskInputs;
+  }
+
+  createButton(type, style) {
+    const button = document.createElement('button');
+    button.className = `btn btn-outline-${style} edit__button mr-2`;
+    button.dataset.type = `${type}-task`;
+    button.dataset.id = this.index;
+    button.textContent = `${type.charAt(0).toUpperCase()}`;
+    button.addEventListener('click', () => {
+      this.populateTaskForm();
+      const addTaskForm = document.getElementById('addTaskForm');
+      
+      utils.toggleShowElement(addTaskForm);
+      utils.editFormTitle();
+    });
+    return button;
+  }
+
+  showTask() {
+    const arr = this.formatProps();
 
     const tr = document.createElement('tr');
     for (let i = 0; i < arr.length; i += 1) {
@@ -43,16 +75,8 @@ export default class Todo {
       td.textContent = arr[i];
       tr.appendChild(td);
     }
-    const editButton = document.createElement('button');
-    const deleteButton = document.createElement('button');
-    editButton.className = 'btn btn-outline-info edit__button';
-    deleteButton.className = 'btn btn-outline-danger edit__button mx-2';
-    editButton.dataset.type = 'edit-task';
-    deleteButton.dataset.type = 'delete-task';
-    editButton.dataset.id = this.index;
-    deleteButton.dataset.id = this.index;
-    editButton.textContent = 'Edit';
-    deleteButton.textContent = 'Delete';
+    const editButton = this.createButton('edit', 'info');
+    const deleteButton = this.createButton('delete', 'danger');
     const td = document.createElement('td');
     td.appendChild(editButton);
     td.appendChild(deleteButton);

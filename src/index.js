@@ -5,7 +5,6 @@ import Project from './project';
 const newProject = new Project('Other');
 utils.showMainList(Project);
 
-// utils.showAllTasks();
 event.loadAddProject();
 event.loadAddTask();
 event.submitTask();
