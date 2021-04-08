@@ -59,7 +59,7 @@ export default class Todo {
     button.addEventListener('click', () => {
       this.populateTaskForm();
       const editTaskForm = document.getElementById('editTaskForm');
-
+      utils.addHiddenInput(editTaskForm, this);
       utils.toggleShowElement(editTaskForm);
     });
     return button;
@@ -87,7 +87,7 @@ export default class Todo {
   editTask() {
     const arr = utils.taskInputs();
     const keys = Object.keys(this);
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i += 1) {
       this.changeAttr(keys[i], arr[i]);
     }
   }

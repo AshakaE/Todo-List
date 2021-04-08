@@ -29,6 +29,16 @@ function submitTask() {
   });
 }
 
+function saveTask() {
+  const editTaskButton = document.getElementById('formSave');
+  editTaskButton.addEventListener('click', () => {
+    const newTask = new Todo(...util.taskInputs());
+    util.showTask(newTask);
+    util.toggleShowElement(addTaskForm);
+    util.clearAddTaskForm();
+  });
+}
+
 function submitProject() {
   const submitProjectButton = document.getElementById('projectSubmit');
   submitProjectButton.addEventListener('click', () => {

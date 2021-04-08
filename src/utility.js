@@ -69,6 +69,14 @@ function createProject() {
   return newProject;
 }
 
+function addHiddenInput(form, task) {
+  const input = document.querySelector('[name="id"]') ?? document.createElement('input');
+  input.setAttribute('type', 'hidden');
+  input.setAttribute('name', 'id');
+  input.setAttribute('value', task.index);
+  form.insertBefore(input, form.firstChild);
+}
+
 // function showAllTasks() {
 //   const taskTable = document.querySelector('.taskTable');
 //   Todo.mainList.forEach(task => {
@@ -88,5 +96,5 @@ function findTask(id) {
 
 export {
   toggleShowElement, showMainList, taskInputs, showTask, createProject,
-  addProjectToForm, findTask, clearAddTaskForm, clearAddProjectForm,
+  addProjectToForm, findTask, clearAddTaskForm, clearAddProjectForm, addHiddenInput,
 };
