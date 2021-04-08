@@ -7,8 +7,20 @@ function toggleShowElement(element) {
   element.classList.toggle('hide');
 }
 
+function findTaskInputs() {
+  return document.querySelectorAll('[data-type="in"]');
+}
+
+function populateTaskForm(todo) {
+  const taskInputs = findTaskInputs()
+  for (let i = 0; i < taskInputs.length; i++) {
+    const element = taskInputs[i];
+    element.value = todo.findProps()[i]
+  }
+}
+
 function taskInputs() {
-  const taskInputs = document.querySelectorAll('[data-type="in"]');
+  const taskInputs = findTaskInputs()
   const arr = [];
   taskInputs.forEach(node => {
     arr.push(node.value);
@@ -59,7 +71,17 @@ function showTask(task) {
   taskTable.appendChild(task.showTask());
 }
 
+function findTask(id) {
+  const task = document.querySelector(`tr[data-id="${id}"]`)
+  return task
+}
+
+function editFormTitle() {
+  const formTitle = document.querySelector('.form__title')
+  formTitle.textContent = 'Edit Task'
+}
+
 export {
   toggleShowElement, createTask, showMainList, taskInputs, showAllTasks, showTask, createProject,
-  addProjectToForm,
+  addProjectToForm, editFormTitle, populateTaskForm, findTask
 };

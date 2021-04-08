@@ -34,6 +34,10 @@ function submitProject() {
   });
 }
 
+function loadEditTask() {
+  const editButton =  document.querySelector(`[data-id="${id}"]`)
+}
+
 export {
   loadAddTask, submitTask, loadAddProject, submitProject,
 };

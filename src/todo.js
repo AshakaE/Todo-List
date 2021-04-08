@@ -24,8 +24,12 @@ export default class Todo {
     this[attr] = string;
   }
 
+  findProps() {
+    return Object.values(this)
+  }
+
   showTask() {
-    const props = Object.values(this);
+    const props = this.findProps();
     const arr = [];
     for (let i = 0; i < 3; i += 1) {
       arr.push(props[i]);
@@ -53,6 +57,7 @@ export default class Todo {
     td.appendChild(editButton);
     td.appendChild(deleteButton);
     tr.appendChild(td);
+    tr.dataset.id = this.index;
     return tr;
   }
 }
