@@ -25,7 +25,7 @@ function clearAddProjectForm() {
   projectInput.value = '';
 }
 
-function taskInputs( type = 'in') {
+function taskInputs(type = 'in') {
   const taskInputs = findTaskInputs(type);
   const arr = [];
   taskInputs.forEach(node => {
@@ -84,6 +84,30 @@ function addHiddenInput(form, task) {
 //   });
 // }
 
+function toggleDone(task) {
+  const input = document.querySelector(`[data-task-id="${task.index}"]`);
+  if (input.checked === true) {
+    task.done = true;
+  } else {
+    task.done = false;
+  }
+  console.log(task);
+}
+
+function createCheckBox(task) {
+  const td = document.createElement('td');
+  const input = document.createElement('input');
+  input.className = 'form-check-input';
+  input.setAttribute('type', 'checkbox');
+  input.dataset.taskId = task.index;
+  input.addEventListener('change', () => {
+    toggleDone(task);
+  });
+  td.appendChild(input);
+  return td;
+}
+
+
 function showTask(task) {
   const taskTable = document.querySelector('.taskTable');
   taskTable.appendChild(task.showTask());
@@ -96,5 +120,5 @@ function findTask(id) {
 
 export {
   toggleShowElement, showMainList, taskInputs, showTask, createProject,
-  addProjectToForm, findTask, clearAddTaskForm, clearAddProjectForm, addHiddenInput,
+  addProjectToForm, findTask, clearAddTaskForm, clearAddProjectForm, addHiddenInput, createCheckBox, toggleDone,
 };

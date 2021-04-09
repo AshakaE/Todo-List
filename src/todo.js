@@ -14,6 +14,7 @@ export default class Todo {
     this.priority = priority;
     this.project = project;
     this.index = Todo.mainList.length;
+    this.done = false;
     this.addToProject(project);
     Todo.mainList.push(this);
   }
@@ -61,9 +62,9 @@ export default class Todo {
 
   addDeleteEvent(button) {
     button.addEventListener('click', () => {
-      utils.findTask(this.index).remove()
-      delete Todo.mainList[this.index]
-      console.log(Todo.mainList)
+      utils.findTask(this.index).remove();
+      delete Todo.mainList[this.index];
+      console.log(Todo.mainList);
     });
   }
 
@@ -74,12 +75,13 @@ export default class Todo {
     button.dataset.id = this.index;
     button.textContent = type.toUpperCase();
     if (type === 'edit') {
-      this.addEditEvent(button)
+      this.addEditEvent(button);
     } else {
-      this.addDeleteEvent(button)
+      this.addDeleteEvent(button);
     }
     return button;
   }
+
 
   showTask() {
     const arr = this.formatProps();
@@ -93,6 +95,7 @@ export default class Todo {
     const editButton = this.createButton('edit', 'info');
     const deleteButton = this.createButton('delete', 'danger');
     const td = document.createElement('td');
+    tr.appendChild(utils.createCheckBox(this));
     td.appendChild(editButton);
     td.appendChild(deleteButton);
     tr.appendChild(td);
@@ -106,17 +109,16 @@ export default class Todo {
     for (let i = 0; i < arr.length; i += 1) {
       this.changeAttr(keys[i], arr[i]);
     }
-    this.showEditedTask()
+    this.showEditedTask();
   }
 
   showEditedTask() {
-    const task = document.querySelector(`tr[data-id="${this.index}"]`)
-    const arr = task.childNodes
+    const task = document.querySelector(`tr[data-id="${this.index}"]`);
+    const arr = task.childNodes;
     const taskValues = this.formatProps();
     for (let i = 0; i < 5; i += 1) {
       const element = arr[i];
-      element.textContent = taskValues[i]
-      
+      element.textContent = taskValues[i];
     }
   }
 }
