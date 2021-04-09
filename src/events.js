@@ -6,21 +6,21 @@ const addTaskForm = document.getElementById('addTaskForm');
 const addProjectForm = document.getElementById('addProjectForm');
 const editTaskForm = document.getElementById('editTaskForm');
 
-function loadAddTask() {
+const loadAddTask = () => {
   const addTaskButton = document.getElementById('addTaskButton');
   addTaskButton.addEventListener('click', () => {
     util.toggleShowElement(addTaskForm);
   });
 }
 
-function loadAddProject() {
+const loadAddProject = () => {
   const addProjectButton = document.getElementById('addProjectButton');
   addProjectButton.addEventListener('click', () => {
     util.toggleShowElement(addProjectForm);
   });
 }
 
-function submitTask() {
+const submitTask = () => {
   const submitTaskButton = document.getElementById('formSubmit');
   submitTaskButton.addEventListener('click', () => {
     const newTask = new Todo(...util.taskInputs());
@@ -32,7 +32,7 @@ function submitTask() {
   });
 }
 
-function saveTask() {
+const saveTask = () => {
   const editTaskButton = document.getElementById('formSave');
   editTaskButton.addEventListener('click', () => {
     const editedTask = document.querySelector('[name="id"]').value;
@@ -44,7 +44,7 @@ function saveTask() {
   });
 }
 
-function submitProject() {
+const submitProject = () => {
   const submitProjectButton = document.getElementById('projectSubmit');
   submitProjectButton.addEventListener('click', () => {
     const project = util.createProject();
@@ -56,7 +56,7 @@ function submitProject() {
   });
 }
 
-function showProjects() {
+const showProjects = () => {
   const button = document.getElementById('showProjects');
   const table = document.querySelector('.projectsSection');
   button.addEventListener('click', () => {
@@ -64,7 +64,7 @@ function showProjects() {
   });
 }
 
-function setInititalData() {
+const setInititalData = () => {
   const projects = JSON.parse(localStorage.getItem('Projects')) ?? [];
   projects.forEach(project => {
     /* eslint-disable no-unused-vars */
