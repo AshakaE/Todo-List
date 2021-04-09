@@ -5,6 +5,8 @@ import Todo from './todo';
 
 const newProject = new Project('Other');
 utils.showMainList(Project);
+utils.showProject(newProject);
+event.showProjects();
 
 event.loadAddProject();
 event.loadAddTask();

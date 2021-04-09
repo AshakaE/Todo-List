@@ -33,7 +33,7 @@ function submitTask() {
 function saveTask() {
   const editTaskButton = document.getElementById('formSave');
   editTaskButton.addEventListener('click', () => {
-    const editedTask = document.querySelector('[name="id"]').value
+    const editedTask = document.querySelector('[name="id"]').value;
     Todo.mainList[editedTask].editTask();
     util.toggleShowElement(editTaskForm);
     util.clearAddTaskForm();
@@ -43,12 +43,22 @@ function saveTask() {
 function submitProject() {
   const submitProjectButton = document.getElementById('projectSubmit');
   submitProjectButton.addEventListener('click', () => {
-    util.addProjectToForm(util.createProject());
+    const project = util.createProject();
+    util.addProjectToForm(project);
+    util.showProject(project);
     util.toggleShowElement(addProjectForm);
     util.clearAddProjectForm();
   });
 }
 
+function showProjects() {
+  const button = document.getElementById('showProjects');
+  const table = document.querySelector('.projectsSection');
+  button.addEventListener('click', () => {
+    util.toggleShowElement(table);
+  });
+}
+
 export {
-  loadAddTask, submitTask, loadAddProject, submitProject, saveTask,
+  loadAddTask, submitTask, loadAddProject, submitProject, saveTask, showProjects,
 };

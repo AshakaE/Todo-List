@@ -15,4 +15,25 @@ export default class Project {
   addTodo(todo) {
     this.content.push(todo);
   }
+
+  showTasksbutton() {
+    const td = document.createElement('td');
+    const button = document.createElement('button');
+    button.dataset.projectId = this.index;
+    button.className = 'btn btn-sm btn-outline-primary';
+    button.textContent = 'Show Tasks';
+    td.appendChild(button);
+    return td;
+  }
+
+  showProject() {
+    const tr = document.createElement('tr');
+    tr.dataset.projectId = this.index;
+    const td = document.createElement('td');
+    td.textContent = this.title;
+    const button = this.showTasksbutton();
+    tr.appendChild(td);
+    tr.appendChild(button);
+    return tr;
+  }
 }

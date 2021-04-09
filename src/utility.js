@@ -91,7 +91,6 @@ function toggleDone(task) {
   } else {
     task.done = false;
   }
-  console.log(task);
 }
 
 function createCheckBox(task) {
@@ -107,7 +106,6 @@ function createCheckBox(task) {
   return td;
 }
 
-
 function showTask(task) {
   const taskTable = document.querySelector('.taskTable');
   taskTable.appendChild(task.showTask());
@@ -118,7 +116,13 @@ function findTask(id) {
   return task;
 }
 
+function showProject(project) {
+  const table = document.querySelector('.projectsTable');
+  table.appendChild(project.showProject());
+}
+
 export {
-  toggleShowElement, showMainList, taskInputs, showTask, createProject,
-  addProjectToForm, findTask, clearAddTaskForm, clearAddProjectForm, addHiddenInput, createCheckBox, toggleDone,
+  toggleShowElement, showMainList, taskInputs, showTask, createProject, showProject,
+  addProjectToForm, findTask, clearAddTaskForm, clearAddProjectForm, addHiddenInput, createCheckBox,
+  toggleDone,
 };

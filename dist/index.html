@@ -15,8 +15,9 @@
   <main class="container p-5 main">
     <h1 class="text-center mb-5">Todo Project</h1>
     <nav class="main__nav mb-5">
-      <button id="addTaskButton" class="main__button btn btn-outline-primary">Add a Task</button>
+      <button id="addTaskButton" class="main__button btn btn-outline-success">Add a Task</button>
       <button id="addProjectButton" class="main__button btn btn-outline-primary">Add a Project</button>
+      <button id="showProjects" class="main__button btn btn-outline-info">Show Projects</button>
     </nav>
     <div id="addProjectForm" action="#" class="row border rounded px-4 py-5 mb-3 hide">
       <div class="col-12">
@@ -96,6 +97,19 @@
       <div class="col-12">
         <button id="formSave" class="form__submit btn btn-lg btn-outline-success w-100 mt-5">Save changes</button>
       </div>
+    </div>
+    <div class="col-12 mt-5 mx-auto border rounded px-4 py-5 projectsSection hide">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="projectsTable">
+          
+        </tbody>
+      </table>
     </div>
     <div class="col-12 mt-5 mx-auto border rounded px-4 py-5">
       <table class="table">
