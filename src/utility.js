@@ -124,5 +124,5 @@ function showProject(project) {
 export {
   toggleShowElement, showMainList, taskInputs, showTask, createProject, showProject,
   addProjectToForm, findTask, clearAddTaskForm, clearAddProjectForm, addHiddenInput, createCheckBox,
-  toggleDone,
+  toggleDone, 
 };

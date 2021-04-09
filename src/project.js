@@ -22,6 +22,9 @@ export default class Project {
     button.dataset.projectId = this.index;
     button.className = 'btn btn-sm btn-outline-primary';
     button.textContent = 'Show Tasks';
+    button.addEventListener('click', () => {
+      this.showProjectTasks()
+    })
     td.appendChild(button);
     return td;
   }
@@ -30,10 +33,28 @@ export default class Project {
     const tr = document.createElement('tr');
     tr.dataset.projectId = this.index;
     const td = document.createElement('td');
+    const tdExtra = document.createElement('td');
     td.textContent = this.title;
     const button = this.showTasksbutton();
     tr.appendChild(td);
     tr.appendChild(button);
+    tr.appendChild(tdExtra);
     return tr;
+  }
+
+  showProjectTasks() {
+    const tr = document.querySelector(`tr[data-project-id="${this.index}"]`)
+    const ulOther = document.querySelector(`ul[data-project-id="${this.index}"]`)
+    if (ulOther !== null) {
+      ulOther.remove()
+    }
+    const ul = document.createElement('ul');
+      ul.dataset.projectId = this.index;
+      this.content.forEach(task => {
+        const li = document.createElement('li')
+        li.textContent = `${task.title} - due: ${task.dueDate}`
+        ul.appendChild(li)
+      })
+      tr.lastChild.appendChild(ul);
   }
 }
