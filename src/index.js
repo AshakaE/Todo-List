@@ -1,13 +1,20 @@
 import * as event from './events';
 import * as utils from './utility';
 import Project from './project';
+import Todo from './todo';
 
 event.setInititalData();
-console.log(Project.mainList);
+if (Project.mainList.length === 0) {
+  /* eslint-disable no-unused-vars */
+  const newProject = new Project('default');
+  /* eslint-enable no-unused-vars */
+}
 
 utils.showMainList(Project);
-event.showProjects();
+utils.showProjects(Project);
+utils.showInitialTasks(Todo);
 
+event.showProjects();
 event.loadAddProject();
 event.loadAddTask();
 event.submitTask();

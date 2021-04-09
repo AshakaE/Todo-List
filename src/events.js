@@ -65,8 +65,18 @@ function showProjects() {
 }
 
 function setInititalData() {
-  Project.mainList = JSON.parse(localStorage.getItem('Projects')) ?? [];
-  Todo.mainList = JSON.parse(localStorage.getItem('Tasks')) ?? [];
+  const projects = JSON.parse(localStorage.getItem('Projects')) ?? [];
+  projects.forEach(project => {
+    /* eslint-disable no-unused-vars */
+    const newproject = new Project(...Object.values(project));
+  });
+  const tasks = JSON.parse(localStorage.getItem('Tasks')) ?? [];
+  tasks.forEach(task => {
+    if (task) {
+      const newTask = new Todo(...Object.values(task));
+      /* eslint-enable no-unused-vars */
+    }
+  });
 }
 
 export {

@@ -45,6 +45,20 @@ function showMainList(projectClass) {
   });
 }
 
+function showInitialTasks(todoClass) {
+  const taskTable = document.querySelector('.taskTable');
+  todoClass.mainList.forEach(task => {
+    taskTable.appendChild(task.showTask());
+  });
+}
+
+function showProjects(projectClass) {
+  const table = document.querySelector('.projectsTable');
+  projectClass.mainList.forEach((project) => {
+    table.appendChild(project.showProject());
+  });
+}
+
 function addProjectToForm(project) {
   const option = document.createElement('option');
   option.textContent = project.title;
@@ -53,11 +67,6 @@ function addProjectToForm(project) {
   projectsList.appendChild(option);
   editProjectsList.appendChild(optionClone);
 }
-
-// function createTask() {
-//   const newTask = new Todo(...taskInputs());
-//   return newTask;
-// }
 
 function projectInput() {
   const projectInput = document.getElementById('projectTitle');
@@ -76,13 +85,6 @@ function addHiddenInput(form, task) {
   input.setAttribute('value', task.index);
   form.insertBefore(input, form.firstChild);
 }
-
-// function showAllTasks() {
-//   const taskTable = document.querySelector('.taskTable');
-//   Todo.mainList.forEach(task => {
-//     taskTable.appendChild(task.showTask());
-//   });
-// }
 
 function toggleDone(task) {
   const input = document.querySelector(`[data-task-id="${task.index}"]`);
@@ -123,11 +125,10 @@ function showProject(project) {
 
 function updateData(classname, type) {
   localStorage.setItem(type, JSON.stringify(classname.mainList));
-  console.log(localStorage);
 }
 
 export {
   toggleShowElement, showMainList, taskInputs, showTask, createProject, showProject,
   addProjectToForm, findTask, clearAddTaskForm, clearAddProjectForm, addHiddenInput, createCheckBox,
-  toggleDone, updateData,
+  toggleDone, updateData, showProjects, showInitialTasks,
 };
