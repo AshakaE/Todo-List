@@ -1,5 +1,3 @@
-import Project from './project';
-
 const projectsList = document.getElementById('project');
 const editProjectsList = document.getElementById('editProject');
 
@@ -43,20 +41,6 @@ const showMainList = (projectClass) => {
   });
 };
 
-const showInitialTasks = (todoClass) => {
-  const taskTable = document.querySelector('.taskTable');
-  todoClass.mainList.forEach(task => {
-    taskTable.appendChild(task.showTask());
-  });
-};
-
-const showProjects = (projectClass) => {
-  const table = document.querySelector('.projectsTable');
-  projectClass.mainList.forEach((project) => {
-    table.appendChild(project.showProject());
-  });
-};
-
 const addProjectToForm = (project) => {
   const option = document.createElement('option');
   option.textContent = project.title;
@@ -69,11 +53,6 @@ const addProjectToForm = (project) => {
 const projectInput = () => {
   const projectInput = document.getElementById('projectTitle');
   return projectInput.value;
-};
-
-const createProject = () => {
-  const newProject = new Project(projectInput());
-  return newProject;
 };
 
 const addHiddenInput = (form, task) => {
@@ -106,27 +85,155 @@ const createCheckBox = (task) => {
   return td;
 };
 
-const showTask = (task) => {
-  const taskTable = document.querySelector('.taskTable');
-  taskTable.appendChild(task.showTask());
-};
-
 const findTask = (id) => {
   const task = document.querySelector(`tr[data-id="${id}"]`);
   return task;
-};
-
-const showProject = (project) => {
-  const table = document.querySelector('.projectsTable');
-  table.appendChild(project.showProject());
 };
 
 const updateData = (classname, type) => {
   localStorage.setItem(type, JSON.stringify(classname.mainList));
 };
 
+const populateTaskForm = (task) => {
+  const taskInputs = document.querySelectorAll('[data-type="out"]');
+  for (let i = 0; i < taskInputs.length; i += 1) {
+    const element = taskInputs[i];
+    element.value = task.findProps()[i];
+  }
+  return taskInputs;
+};
+
+const addEditEvent = (task, button) => {
+  button.addEventListener('click', () => {
+    populateTaskForm(task);
+    const editTaskForm = document.getElementById('editTaskForm');
+    addHiddenInput(editTaskForm, task);
+    toggleShowElement(editTaskForm);
+  });
+};
+
+const addDeleteEvent = (className, task, button) => {
+  button.addEventListener('click', () => {
+    findTask(task.index).remove();
+    delete className.mainList[task.index];
+    updateData(className, 'Tasks');
+  });
+};
+
+const createButton = (className, task, type, style) => {
+  const button = document.createElement('button');
+  button.className = `btn btn-outline-${style} edit__button mx-2`;
+  button.dataset.type = `${type}-task`;
+  button.dataset.id = task.index;
+  button.textContent = type.toUpperCase();
+  if (type === 'edit') {
+    addEditEvent(task, button);
+  } else {
+    addDeleteEvent(className, task, button);
+  }
+  return button;
+};
+
+const showTask = (className, task) => {
+  const arr = task.formatProps();
+
+  const tr = document.createElement('tr');
+  for (let i = 0; i < arr.length; i += 1) {
+    const td = document.createElement('td');
+    td.textContent = arr[i];
+    tr.appendChild(td);
+  }
+  const editButton = createButton(className, task, 'edit', 'info');
+  const deleteButton = createButton(className, task, 'delete', 'danger');
+  const td = document.createElement('td');
+  tr.appendChild(createCheckBox(task));
+  td.appendChild(editButton);
+  td.appendChild(deleteButton);
+  tr.appendChild(td);
+  tr.dataset.id = task.index;
+  return tr;
+};
+
+const showInitialTasks = (todoClass) => {
+  const taskTable = document.querySelector('.taskTable');
+  todoClass.mainList.forEach(task => {
+    taskTable.appendChild(showTask(todoClass, task));
+  });
+};
+
+const presentTask = (className, task) => {
+  const taskTable = document.querySelector('.taskTable');
+  taskTable.appendChild(showTask(className, task));
+};
+
+const showEditedTask = (task) => {
+  const taskNode = document.querySelector(`tr[data-id="${task.index}"]`);
+  const arr = taskNode.childNodes;
+  const taskValues = task.formatProps();
+  for (let i = 0; i < 5; i += 1) {
+    const element = arr[i];
+    element.textContent = taskValues[i];
+  }
+};
+
+const showProjectTasks = (project) => {
+  const tr = document.querySelector(`tr[data-project-id="${project.index}"]`);
+  const ulOther = document.querySelector(`ul[data-project-id="${project.index}"]`);
+  if (ulOther !== null) {
+    ulOther.remove();
+  }
+  const ul = document.createElement('ul');
+  ul.dataset.projectId = project.index;
+  project.content.forEach(task => {
+    const li = document.createElement('li');
+    li.textContent = `${task.title} - due: ${task.dueDate}`;
+    ul.appendChild(li);
+  });
+  tr.lastChild.appendChild(ul);
+};
+
+const showTasksbutton = (project) => {
+  const td = document.createElement('td');
+  const button = document.createElement('button');
+  button.dataset.projectId = project.index;
+  button.className = 'btn btn-sm btn-outline-primary';
+  button.textContent = 'Show Tasks';
+  button.addEventListener('click', () => {
+    showProjectTasks(project);
+  });
+  td.appendChild(button);
+  return td;
+};
+
+const showProject = (project) => {
+  const tr = document.createElement('tr');
+  tr.dataset.projectId = project.index;
+  const td = document.createElement('td');
+  const tdExtra = document.createElement('td');
+  td.textContent = project.title;
+  const button = showTasksbutton(project);
+  tr.appendChild(td);
+  tr.appendChild(button);
+  tr.appendChild(tdExtra);
+  return tr;
+};
+
+const showProjects = (projectClass) => {
+  const table = document.querySelector('.projectsTable');
+  projectClass.mainList.forEach((project) => {
+    table.appendChild(showProject(project));
+  });
+};
+
+const presentProject = (project) => {
+  const table = document.querySelector('.projectsTable');
+  table.appendChild(showProject(project));
+};
+
 export {
-  toggleShowElement, showMainList, taskInputs, showTask, createProject, showProject,
+  toggleShowElement, showMainList, taskInputs, showTask, projectInput, showProject,
   addProjectToForm, findTask, clearAddTaskForm, clearAddProjectForm, addHiddenInput, createCheckBox,
-  toggleDone, updateData, showProjects, showInitialTasks,
+  toggleDone, updateData, showProjects, showInitialTasks, populateTaskForm, addEditEvent,
+  addDeleteEvent, createButton, presentTask, showEditedTask, showTasksbutton, presentProject,
+  showProjectTasks,
 };

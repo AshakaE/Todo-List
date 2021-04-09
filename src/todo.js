@@ -42,83 +42,12 @@ export default class Todo {
     return arr;
   }
 
-  populateTaskForm() {
-    const taskInputs = document.querySelectorAll('[data-type="out"]');
-    for (let i = 0; i < taskInputs.length; i += 1) {
-      const element = taskInputs[i];
-      element.value = this.findProps()[i];
-    }
-    return taskInputs;
-  }
-
-  addEditEvent(button) {
-    button.addEventListener('click', () => {
-      this.populateTaskForm();
-      const editTaskForm = document.getElementById('editTaskForm');
-      utils.addHiddenInput(editTaskForm, this);
-      utils.toggleShowElement(editTaskForm);
-    });
-  }
-
-  addDeleteEvent(button) {
-    button.addEventListener('click', () => {
-      utils.findTask(this.index).remove();
-      delete Todo.mainList[this.index];
-      utils.updateData(Todo, 'Tasks');
-    });
-  }
-
-  createButton(type, style) {
-    const button = document.createElement('button');
-    button.className = `btn btn-outline-${style} edit__button mx-2`;
-    button.dataset.type = `${type}-task`;
-    button.dataset.id = this.index;
-    button.textContent = type.toUpperCase();
-    if (type === 'edit') {
-      this.addEditEvent(button);
-    } else {
-      this.addDeleteEvent(button);
-    }
-    return button;
-  }
-
-
-  showTask() {
-    const arr = this.formatProps();
-
-    const tr = document.createElement('tr');
-    for (let i = 0; i < arr.length; i += 1) {
-      const td = document.createElement('td');
-      td.textContent = arr[i];
-      tr.appendChild(td);
-    }
-    const editButton = this.createButton('edit', 'info');
-    const deleteButton = this.createButton('delete', 'danger');
-    const td = document.createElement('td');
-    tr.appendChild(utils.createCheckBox(this));
-    td.appendChild(editButton);
-    td.appendChild(deleteButton);
-    tr.appendChild(td);
-    tr.dataset.id = this.index;
-    return tr;
-  }
-
   editTask() {
     const arr = utils.taskInputs('out');
     const keys = Object.keys(this);
     for (let i = 0; i < arr.length; i += 1) {
       this.changeAttr(keys[i], arr[i]);
     }
-    this.showEditedTask();
-  }
-
-  showEditedTask() {
-    const task = document.querySelector(`tr[data-id="${this.index}"]`);
-    const arr = task.childNodes;
-    const taskValues = this.formatProps();
-    for (let i = 0; i < 5; i += 1) {
-      const element = arr[i];
-      element.textContent = taskValues[i];
-    }
+    utils.showEditedTask(this);
   }
 }

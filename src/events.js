@@ -11,14 +11,14 @@ const loadAddTask = () => {
   addTaskButton.addEventListener('click', () => {
     util.toggleShowElement(addTaskForm);
   });
-}
+};
 
 const loadAddProject = () => {
   const addProjectButton = document.getElementById('addProjectButton');
   addProjectButton.addEventListener('click', () => {
     util.toggleShowElement(addProjectForm);
   });
-}
+};
 
 const submitTask = () => {
   const submitTaskButton = document.getElementById('formSubmit');
@@ -26,11 +26,11 @@ const submitTask = () => {
     const newTask = new Todo(...util.taskInputs());
     util.updateData(Todo, 'Tasks');
     util.updateData(Project, 'Projects');
-    util.showTask(newTask);
+    util.presentTask(Todo, newTask);
     util.toggleShowElement(addTaskForm);
     util.clearAddTaskForm();
   });
-}
+};
 
 const saveTask = () => {
   const editTaskButton = document.getElementById('formSave');
@@ -42,19 +42,19 @@ const saveTask = () => {
     util.toggleShowElement(editTaskForm);
     util.clearAddTaskForm();
   });
-}
+};
 
 const submitProject = () => {
   const submitProjectButton = document.getElementById('projectSubmit');
   submitProjectButton.addEventListener('click', () => {
-    const project = util.createProject();
+    const project = new Project(util.projectInput());
     util.updateData(Project, 'Projects');
     util.addProjectToForm(project);
-    util.showProject(project);
+    util.presentProject(project);
     util.toggleShowElement(addProjectForm);
     util.clearAddProjectForm();
   });
-}
+};
 
 const showProjects = () => {
   const button = document.getElementById('showProjects');
@@ -62,7 +62,7 @@ const showProjects = () => {
   button.addEventListener('click', () => {
     util.toggleShowElement(table);
   });
-}
+};
 
 const setInititalData = () => {
   const projects = JSON.parse(localStorage.getItem('Projects')) ?? [];
@@ -77,7 +77,7 @@ const setInititalData = () => {
       /* eslint-enable no-unused-vars */
     }
   });
-}
+};
 
 export {
   loadAddTask, submitTask, loadAddProject, submitProject, saveTask, showProjects, setInititalData,
