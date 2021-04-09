@@ -23,8 +23,8 @@ export default class Project {
     button.className = 'btn btn-sm btn-outline-primary';
     button.textContent = 'Show Tasks';
     button.addEventListener('click', () => {
-      this.showProjectTasks()
-    })
+      this.showProjectTasks();
+    });
     td.appendChild(button);
     return td;
   }
@@ -43,18 +43,18 @@ export default class Project {
   }
 
   showProjectTasks() {
-    const tr = document.querySelector(`tr[data-project-id="${this.index}"]`)
-    const ulOther = document.querySelector(`ul[data-project-id="${this.index}"]`)
+    const tr = document.querySelector(`tr[data-project-id="${this.index}"]`);
+    const ulOther = document.querySelector(`ul[data-project-id="${this.index}"]`);
     if (ulOther !== null) {
-      ulOther.remove()
+      ulOther.remove();
     }
     const ul = document.createElement('ul');
-      ul.dataset.projectId = this.index;
-      this.content.forEach(task => {
-        const li = document.createElement('li')
-        li.textContent = `${task.title} - due: ${task.dueDate}`
-        ul.appendChild(li)
-      })
-      tr.lastChild.appendChild(ul);
+    ul.dataset.projectId = this.index;
+    this.content.forEach(task => {
+      const li = document.createElement('li');
+      li.textContent = `${task.title} - due: ${task.dueDate}`;
+      ul.appendChild(li);
+    });
+    tr.lastChild.appendChild(ul);
   }
 }

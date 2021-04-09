@@ -1,6 +1,6 @@
 import * as util from './utility';
-import Project from './project';
 import Todo from './todo';
+import Project from './project';
 
 const addTaskForm = document.getElementById('addTaskForm');
 const addProjectForm = document.getElementById('addProjectForm');
@@ -24,6 +24,8 @@ function submitTask() {
   const submitTaskButton = document.getElementById('formSubmit');
   submitTaskButton.addEventListener('click', () => {
     const newTask = new Todo(...util.taskInputs());
+    util.updateData(Todo, 'Tasks');
+    util.updateData(Project, 'Projects');
     util.showTask(newTask);
     util.toggleShowElement(addTaskForm);
     util.clearAddTaskForm();
@@ -35,6 +37,8 @@ function saveTask() {
   editTaskButton.addEventListener('click', () => {
     const editedTask = document.querySelector('[name="id"]').value;
     Todo.mainList[editedTask].editTask();
+    util.updateData(Todo, 'Tasks');
+    util.updateData(Project, 'Projects');
     util.toggleShowElement(editTaskForm);
     util.clearAddTaskForm();
   });
@@ -44,6 +48,7 @@ function submitProject() {
   const submitProjectButton = document.getElementById('projectSubmit');
   submitProjectButton.addEventListener('click', () => {
     const project = util.createProject();
+    util.updateData(Project, 'Projects');
     util.addProjectToForm(project);
     util.showProject(project);
     util.toggleShowElement(addProjectForm);
@@ -59,6 +64,11 @@ function showProjects() {
   });
 }
 
+function setInititalData() {
+  Project.mainList = JSON.parse(localStorage.getItem('Projects')) ?? [];
+  Todo.mainList = JSON.parse(localStorage.getItem('Tasks')) ?? [];
+}
+
 export {
-  loadAddTask, submitTask, loadAddProject, submitProject, saveTask, showProjects,
+  loadAddTask, submitTask, loadAddProject, submitProject, saveTask, showProjects, setInititalData,
 };

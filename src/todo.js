@@ -64,7 +64,7 @@ export default class Todo {
     button.addEventListener('click', () => {
       utils.findTask(this.index).remove();
       delete Todo.mainList[this.index];
-      console.log(Todo.mainList);
+      utils.updateData(Todo, 'Tasks');
     });
   }
 

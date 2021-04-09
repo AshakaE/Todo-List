@@ -121,8 +121,13 @@ function showProject(project) {
   table.appendChild(project.showProject());
 }
 
+function updateData(classname, type) {
+  localStorage.setItem(type, JSON.stringify(classname.mainList));
+  console.log(localStorage);
+}
+
 export {
   toggleShowElement, showMainList, taskInputs, showTask, createProject, showProject,
   addProjectToForm, findTask, clearAddTaskForm, clearAddProjectForm, addHiddenInput, createCheckBox,
-  toggleDone, 
+  toggleDone, updateData,
 };
