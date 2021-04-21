@@ -7,17 +7,23 @@ const toggleShowElement = (element) => {
 
 const findTaskInputs = (type = 'in') => document.querySelectorAll(`[data-type="${type}"]`);
 
+const resetValue = (node) => {
+  if (node.tagName === 'INPUT') {
+    node.value = '';
+  }
+}
+
 const clearAddTaskForm = () => {
   const taskInputs = findTaskInputs();
-  taskInputs.forEach(node => {
-    if (node.tagName === 'INPUT') {
-      node.value = '';
-    }
-  });
+  taskInputs.forEach(node => resetValue(node));
 };
 
+const findProjectForm = () => {
+  return document.getElementById('projectTitle');
+}
+
 const clearAddProjectForm = () => {
-  const projectInput = document.getElementById('projectTitle');
+  const projectInput = findProjectForm();
   projectInput.value = '';
 };
 
