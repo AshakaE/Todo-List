@@ -9,7 +9,11 @@ export default class Project {
   }
 
   changeTitle(string) {
-    this.title = string;
+    if (string === '') {
+      throw new Error('MissingError: Title cannot be blank');
+    } else {
+      this.title = string;
+    }
   }
 
   addTodo(todo) {
