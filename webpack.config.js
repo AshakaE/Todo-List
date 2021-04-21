@@ -44,3 +44,5 @@ module.exports = {
   //   ],
   // },
 };
+
+// "@babel/plugin-proposal-class-properties": "^7.13.0",
