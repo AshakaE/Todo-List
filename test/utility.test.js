@@ -4,8 +4,8 @@ import * as utility from '../src/utility';
 describe('toggleShowElement', () => {
   const mockElement = {
     classList: {
-      toggle: jest.fn()
-    }
+      toggle: jest.fn(),
+    },
   };
 
   it('should call toggle with "hide"', () => {

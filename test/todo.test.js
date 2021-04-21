@@ -1,7 +1,9 @@
 import Todo from '../src/todo';
 import Project from '../src/project';
 
+/* eslint-disable no-unused-vars */
 const myProject = new Project('myTitle');
+/* eslint-enable no-unused-vars */
 
 describe('change attr', () => {
   const myTodo = new Todo('myTodoTitle', 'myDescription', '2021-04-21', 1, 0);

@@ -11,16 +11,14 @@ const resetValue = (node) => {
   if (node.tagName === 'INPUT') {
     node.value = '';
   }
-}
+};
 
 const clearAddTaskForm = () => {
   const taskInputs = findTaskInputs();
   taskInputs.forEach(node => resetValue(node));
 };
 
-const findProjectForm = () => {
-  return document.getElementById('projectTitle');
-}
+const findProjectForm = () => document.getElementById('projectTitle');
 
 const clearAddProjectForm = () => {
   const projectInput = findProjectForm();
